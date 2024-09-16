@@ -54,14 +54,16 @@ char *getResourceUrl(char *out, char *hash)
 void _start() __attribute__((weak, alias("module_start")));
 int module_start(SceSize argc, const void *args)
 {
+    sceClibPrintf("Sound Shapes Mod by Harommel OddSock\n");
     sceClibPrintf("allefresher module start! looking for config...\n");
 
-    // Try to load the URL from the file, if it fails, just use the default URL
-    if (readFileFirstLine("ux0:/allefresher.txt", GAME_URL) == 0)
-    {
-        sceClibPrintf("Failed to read allefresher.txt, using default URL\n");
 
-        strcpy(GAME_URL, "http://refresh.jvyden.xyz:2095/lbp");
+    // Try to load the URL from the file, if it fails, just use the default URL
+    if (readFileFirstLine("ux0:/allefresher_alt.txt", GAME_URL) == 0)
+    {
+        sceClibPrintf("Failed to read allefresher URL text file, using default URL\n");
+
+        strcpy(GAME_URL, "http://sound.ture.fish/otg");
     }
     else
     {
